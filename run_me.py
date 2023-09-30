@@ -105,25 +105,24 @@ if __name__ == "__main__":
             raise
 
         for i in range(1, args_len):
-            match i:
-                case 1: # input_dir
-                    if not re.search('[^/]*/[^/]*', sys.argv[1]):
-                        logging.error("input dir must be like bucket/dir format")
-                        raise
+            if i == 1: # input_dir
+                if not re.search('[^/]*/[^/]*', sys.argv[1]):
+                    logging.error("input dir must be like bucket/dir format")
+                    raise
 
-                    global src_bucket
-                    global src_prefix
+                global src_bucket
+                global src_prefix
 
-                    # src_bucket, src_prefix = sys.argv[1].split('/')
+                # src_bucket, src_prefix = sys.argv[1].split('/')
 
-                case 2: # topic
-                    topic = sys.argv[i]
+            if i == 2: # topic
+                topic = sys.argv[i]
 
-                case 3: # start_time
-                    stime = sys.argv[i]
+            if i == 3: # start_time
+                stime = sys.argv[i]
 
-                case 4: # end_time
-                    etime = sys.argv[i]
+            if i == 4: # end_time
+                etime = sys.argv[i]
 
         main(topic, stime, etime)
 
